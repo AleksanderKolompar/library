@@ -8,6 +8,9 @@ import java.time.LocalDate;
 @Table(name = "Rents")
 public class Rents {
 
+    public Rents() {
+    }
+
     @GeneratedValue
     @Id
     @NotNull
@@ -29,4 +32,27 @@ public class Rents {
 //    private LocalDate returnDate;
 
 
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Books getBookId() {
+        return bookId;
+    }
+
+    public void setBookId(Books bookId) {
+        this.bookId = bookId;
+    }
+
+    public Readers getReaderId() {
+        return readerId;
+    }
+
+    public void setReaderId(Readers readerId) {
+        this.readerId = readerId;
+    }
 }

@@ -7,8 +7,11 @@ import javax.validation.constraints.NotNull;
 @Table(name = "Books")
 public class Books {
 
-    enum Status{
+    public static enum Status{
         RENTED, DESTROYED, LOST;
+    }
+
+    public Books() {
     }
 
     @GeneratedValue
@@ -23,4 +26,28 @@ public class Books {
 
     @Column(name = "status")
     private Status status;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Titles getTitleId() {
+        return titleId;
+    }
+
+    public void setTitleId(Titles titleId) {
+        this.titleId = titleId;
+    }
+
+    public Status getStatus() {
+        return status;
+    }
+
+    public void setStatus(Status status) {
+        this.status = status;
+    }
 }
