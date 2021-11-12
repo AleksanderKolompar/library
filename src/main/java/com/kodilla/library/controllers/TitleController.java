@@ -1,7 +1,8 @@
 package com.kodilla.library.controllers;
 
 import com.kodilla.library.domain.Book;
-import com.kodilla.library.domain.dto.TitleDto;
+import com.kodilla.library.domain.dto.TitleRequest;
+import com.kodilla.library.domain.dto.TitleResponse;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,26 +14,26 @@ import java.util.List;
 public class TitleController {
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-    public TitleDto saveTitle(@RequestBody TitleDto titleDto) {
-        return titleDto;
+    public TitleRequest saveTitle(@RequestBody TitleRequest titleRequest) {
+        return titleRequest;
     }
 
     @GetMapping("/{id}")
-    public TitleDto getTitle(@PathVariable("id") Long id) {
+    public TitleResponse getTitle(@PathVariable("id") Long id) {
         List<Book> bookList = new ArrayList<>();
-        return new TitleDto(id, "title", "author", 1997, bookList);
+        return new TitleResponse(id, "title", "author", 1997, bookList);
     }
 
     @GetMapping()
-    public List<TitleDto> getTitles() {
+    public List<TitleResponse> getTitles() {
         List<Book> bookList = new ArrayList<>();
-        return List.of(new TitleDto(5L, "title", "author", 1997, bookList));
+        return List.of(new TitleResponse(5L, "title", "author", 1997, bookList));
     }
 
     @PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-    public TitleDto updateTitle(@RequestBody TitleDto titleDto) {
+    public TitleResponse updateTitle(@RequestBody TitleResponse titleResponse) {
         List<Book> bookList = new ArrayList<>();
-        return new TitleDto(5L, "title", "author", 1997, bookList);
+        return new TitleResponse(5L, "title", "author", 1997, bookList);
     }
 
     @DeleteMapping("/{id}")

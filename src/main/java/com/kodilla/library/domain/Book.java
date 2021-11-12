@@ -1,14 +1,35 @@
 package com.kodilla.library.domain;
 
+import com.kodilla.library.controllers.exceptions.InvalidStatusException;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.Arrays;
 
 @Entity
 @Table(name = "Books")
 public class Book {
 
     public enum Status {
-        RENTED, DESTROYED, LOST;
+        AVAILABLE("available"),
+        RENTED("rented"),
+        DESTROYED("destroyed"),
+        LOST("lost");
+
+        private String value;
+
+        private Status(String value){
+            this.value = value;
+        }
+
+        public String getValue(){
+            return value;
+        }
+
+        public Status getStatus(String value) throws InvalidStatusException{
+            return Arrays.stream(Status.values())
+                    .filter(status -> status.getValue().equals(value)).findAny().orElseThrow(InvalidStatusException::new);
+        }
     }
 
     public Book() {
@@ -22,7 +43,7 @@ public class Book {
 
     @ManyToOne
     @JoinColumn(name = "title_id")
-    private Title titleId;
+    private Title title;
 
     @Column(name = "status")
     private Status status;
@@ -35,12 +56,12 @@ public class Book {
         this.id = id;
     }
 
-    public Title getTitleId() {
-        return titleId;
+    public Title getTitle() {
+        return title;
     }
 
-    public void setTitleId(Title titleId) {
-        this.titleId = titleId;
+    public void setTitle(Title titleId) {
+        this.title = titleId;
     }
 
     public Status getStatus() {

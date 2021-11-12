@@ -8,14 +8,14 @@ import java.util.List;
 
 @Data
 @AllArgsConstructor
-public class ReaderDto {
+public class ReaderResponse {
 
-    public ReaderDto() {
-        this.rentDtosList = new ArrayList<>();
+    public ReaderResponse() {
+        this.rentResponseList = new ArrayList<>();
     }
 
     private Long id;
     private String firstname;
     private String lastname;
-    private List<RentDto> rentDtosList;
+    private List<RentResponse> rentResponseList;
 }

@@ -1,26 +1,30 @@
 package com.kodilla.library.mapper;
 
 import com.kodilla.library.domain.Book;
-import com.kodilla.library.domain.dto.BookDto;
+import com.kodilla.library.domain.dto.BookResponse;
+import com.kodilla.library.domain.dto.BookRequest;
+import com.kodilla.library.domain.dto.TitleRequest;
 import org.springframework.stereotype.Service;
 
 @Service
 public class BookMapper {
 
-    TitleMapper titleMapper;
+    private TitleMapper titleMapper;
+    //private TitleService titleService;
 
-    public BookDto mapToBookDto(Book book) {
-        BookDto bookDto = new BookDto();
-        bookDto.setId(book.getId());
-        bookDto.setTitleDto(titleMapper.mapToTileDto(book.getTitleId()));
-        bookDto.setStatus(book.getStatus());
-        return bookDto;
+    public BookResponse mapToBookResponse(Book book) {
+        BookResponse bookResponse = new BookResponse();
+        bookResponse.setId(book.getId());
+        bookResponse.setTitleResponse(titleMapper.mapToTitleResponse(book.getTitle()));
+        bookResponse.setStatus(book.getStatus().getValue());
+        return bookResponse;
     }
 
-    public Book mapToBook(BookDto bookDto) {
+    public Book mapToBook(BookRequest bookRequest) {
         Book book = new Book();
-        book.setTitleId(titleMapper.mapToTitles(bookDto.getTitleDto()));
-        book.setStatus(bookDto.getStatus());
+        book.setTitle(titleMapper.mapToTitle(new TitleRequest()));
+        //titleService.getTitle(bookRequest.getTitleId())));
+        book.setStatus(Book.Status.valueOf(bookRequest.getStatus()));
         return book;
     }
 
