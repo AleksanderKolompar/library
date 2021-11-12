@@ -5,12 +5,12 @@ import lombok.Data;
 
 @Data
 @AllArgsConstructor
-public class RentDto {
+public class RentResponse {
 
-    public RentDto() {
+    public RentResponse() {
     }
 
     private Long id;
-    private BookDto bookDto;
-    private ReaderDto readerDto;
+    private BookResponse bookResponse;
+    private ReaderResponse readerResponse;
 }

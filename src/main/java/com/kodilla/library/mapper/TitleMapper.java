@@ -1,28 +1,28 @@
 package com.kodilla.library.mapper;
 
 import com.kodilla.library.domain.Title;
-import com.kodilla.library.domain.dto.TitleDto;
+import com.kodilla.library.domain.dto.TitleRequest;
+import com.kodilla.library.domain.dto.TitleResponse;
 import org.springframework.stereotype.Service;
 
 @Service
 public class TitleMapper {
 
-    public TitleDto mapToTileDto(Title title) {
-        TitleDto titleDto = new TitleDto();
-        titleDto.setId(title.getId());
-        titleDto.setTitle(title.getTitle());
-        titleDto.setAuthor(title.getAuthor());
-        titleDto.setYear(title.getYear());
-        titleDto.setBookList(title.getBooksList());
-        return titleDto;
+    public TitleResponse mapToTitleResponse(Title title) {
+        TitleResponse titleResponse = new TitleResponse();
+        titleResponse.setId(title.getId());
+        titleResponse.setTitle(title.getTitle());
+        titleResponse.setAuthor(title.getAuthor());
+        titleResponse.setYear(title.getYear());
+        titleResponse.setBookList(title.getBooksList());
+        return titleResponse;
     }
 
-    public Title mapToTitles(TitleDto titleDto) {
+    public Title mapToTitle(TitleRequest titleRequest) {
         Title title = new Title();
-        title.setTitle(title.getTitle());
-        title.setAuthor(title.getAuthor());
-        title.setYear(title.getYear());
-        title.setBooksList(title.getBooksList());
+        title.setTitle(titleRequest.getTitle());
+        title.setAuthor(titleRequest.getAuthor());
+        title.setYear(titleRequest.getYear());
         return title;
     }
 }

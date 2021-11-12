@@ -29,7 +29,7 @@ public class Title {
     private int year;
 
     @OneToMany(targetEntity = Book.class,
-            mappedBy = "titleId")
+            mappedBy = "title")
     private List<Book> bookList;
 
     public Long getId() {

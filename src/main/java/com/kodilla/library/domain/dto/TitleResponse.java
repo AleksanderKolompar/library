@@ -9,9 +9,9 @@ import java.util.List;
 
 @Data
 @AllArgsConstructor
-public class TitleDto {
+public class TitleResponse {
 
-    public TitleDto() {
+    public TitleResponse() {
         this.bookList = new ArrayList<>();
     }
 

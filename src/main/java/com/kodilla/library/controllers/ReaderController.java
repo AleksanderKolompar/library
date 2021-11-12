@@ -1,7 +1,8 @@
 package com.kodilla.library.controllers;
 
-import com.kodilla.library.domain.dto.ReaderDto;
-import com.kodilla.library.domain.dto.RentDto;
+import com.kodilla.library.domain.dto.ReaderRequest;
+import com.kodilla.library.domain.dto.ReaderResponse;
+import com.kodilla.library.domain.dto.RentResponse;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,26 +14,26 @@ import java.util.List;
 public class ReaderController {
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ReaderDto saveReader(@RequestBody ReaderDto readerDto) {
-        return readerDto;
+    public ReaderRequest saveReader(@RequestBody ReaderRequest readerRequest) {
+        return readerRequest;
     }
 
     @GetMapping("/{id}")
-    public ReaderDto getReader(@PathVariable("id") Long id) {
-        List<RentDto> rentList = new ArrayList<>();
-        return new ReaderDto(id, "firstname", "lastname", rentList);
+    public ReaderResponse getReader(@PathVariable("id") Long id) {
+        List<RentResponse> rentList = new ArrayList<>();
+        return new ReaderResponse(id, "firstname", "lastname", rentList);
     }
 
     @GetMapping()
-    public List<ReaderDto> getReaders() {
-        List<RentDto> rentList = new ArrayList<>();
-        return List.of(new ReaderDto(5L, "firstname", "lastname", rentList));
+    public List<ReaderResponse> getReaders() {
+        List<RentResponse> rentList = new ArrayList<>();
+        return List.of(new ReaderResponse(5L, "firstname", "lastname", rentList));
     }
 
     @PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ReaderDto updateReader(@RequestBody ReaderDto titleDto) {
-        List<RentDto> rentList = new ArrayList<>();
-        return new ReaderDto(5L, "firstname", "lastname", rentList);
+    public ReaderResponse updateReader(@RequestBody ReaderResponse titleDto) {
+        List<RentResponse> rentList = new ArrayList<>();
+        return new ReaderResponse(5L, "firstname", "lastname", rentList);
     }
 
     @DeleteMapping("/{id}")

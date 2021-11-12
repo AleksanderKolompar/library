@@ -6,13 +6,13 @@ import lombok.Data;
 
 @Data
 @AllArgsConstructor
-public class BookDto {
+public class BookResponse {
 
-    public BookDto() {
+    public BookResponse() {
     }
 
     private Long id;
-    private TitleDto titleDto;
-    private Book.Status status;
+    private TitleResponse titleResponse;
+    private String status;
 
 }

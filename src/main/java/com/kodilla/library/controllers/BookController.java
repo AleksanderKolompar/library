@@ -1,8 +1,9 @@
 package com.kodilla.library.controllers;
 
 import com.kodilla.library.domain.Book;
-import com.kodilla.library.domain.dto.BookDto;
-import com.kodilla.library.domain.dto.TitleDto;
+import com.kodilla.library.domain.dto.BookRequest;
+import com.kodilla.library.domain.dto.BookResponse;
+import com.kodilla.library.domain.dto.TitleResponse;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,26 +15,26 @@ import java.util.List;
 public class BookController {
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-    public BookDto saveBook(@RequestBody BookDto bookDto) {
-        return bookDto;
+    public BookRequest saveBook(@RequestBody BookRequest bookRequest) {
+        return bookRequest;
     }
 
     @GetMapping("/{id}")
-    public BookDto getBook(@PathVariable("id") Long id) {
+    public BookResponse getBook(@PathVariable("id") Long id) {
         List<Book> bookList = new ArrayList<>();
-        return new BookDto(id, new TitleDto(id, "title", "author", 1997, bookList), Book.Status.RENTED);
+        return new BookResponse(id, new TitleResponse(id, "title", "author", 1997, bookList), "rented");
     }
 
     @GetMapping()
-    public List<BookDto> getBooks() {
+    public List<BookResponse> getBooks() {
         List<Book> bookList = new ArrayList<>();
-        return List.of(new BookDto(5L, new TitleDto(2L, "title", "author", 1997, bookList), Book.Status.RENTED));
+        return List.of(new BookResponse(5L, new TitleResponse(2L, "title", "author", 1997, bookList), "rented"));
     }
 
     @PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-    public BookDto updateBook(@RequestBody BookDto titleDto) {
+    public BookResponse updateBook(@RequestBody BookResponse bookRequest) {
         List<Book> bookList = new ArrayList<>();
-        return new BookDto(5L, new TitleDto(2L, "title", "author", 1997, bookList), Book.Status.RENTED);
+        return new BookResponse(5L, new TitleResponse(2L, "title", "author", 1997, bookList), "rented");
     }
 
     @DeleteMapping("/{id}")
