@@ -7,7 +7,7 @@ import javax.validation.constraints.NotNull;
 @Table(name = "Books")
 public class Book {
 
-    public static enum Status {
+    public enum Status {
         RENTED, DESTROYED, LOST;
     }
 
