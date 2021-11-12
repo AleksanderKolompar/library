@@ -1,25 +1,27 @@
 package com.kodilla.library.mapper;
 
-import com.kodilla.library.domain.Books;
+import com.kodilla.library.domain.Book;
 import com.kodilla.library.domain.dto.BookDto;
 import org.springframework.stereotype.Service;
 
 @Service
 public class BookMapper {
 
-    public BookDto mapToBookDto(Books books){
+    TitleMapper titleMapper;
+
+    public BookDto mapToBookDto(Book book) {
         BookDto bookDto = new BookDto();
-        bookDto.setId(books.getId());
-        bookDto.setTitles(books.getTitleId());
-        bookDto.setStatus(books.getStatus());
+        bookDto.setId(book.getId());
+        bookDto.setTitleDto(titleMapper.mapToTileDto(book.getTitleId()));
+        bookDto.setStatus(book.getStatus());
         return bookDto;
     }
 
-    public Books mapToBooks(BookDto bookDto){
-        Books books = new Books();
-        books.setTitleId(bookDto.getTitles());
-        books.setStatus(bookDto.getStatus());
-        return books;
+    public Book mapToBook(BookDto bookDto) {
+        Book book = new Book();
+        book.setTitleId(titleMapper.mapToTitles(bookDto.getTitleDto()));
+        book.setStatus(bookDto.getStatus());
+        return book;
     }
 
 }

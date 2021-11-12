@@ -1,20 +1,21 @@
 package com.kodilla.library.domain.dto;
 
-import com.kodilla.library.domain.Rents;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Data
+@AllArgsConstructor
 public class ReaderDto {
 
     public ReaderDto() {
-        this.rentsList = new ArrayList<>();
+        this.rentDtosList = new ArrayList<>();
     }
 
     private Long id;
     private String firstname;
     private String lastname;
-    private List<Rents> rentsList;
+    private List<RentDto> rentDtosList;
 }

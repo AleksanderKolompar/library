@@ -1,13 +1,16 @@
 package com.kodilla.library.domain.dto;
 
-import com.kodilla.library.domain.Books;
-import com.kodilla.library.domain.Readers;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 
 @Data
+@AllArgsConstructor
 public class RentDto {
 
+    public RentDto() {
+    }
+
     private Long id;
-    private Books bookId;
-    private Readers readerId;
+    private BookDto bookDto;
+    private ReaderDto readerDto;
 }

@@ -7,10 +7,10 @@ import java.util.List;
 
 @Entity
 @Table(name = "Titles")
-public class Titles {
+public class Title {
 
-    public Titles() {
-        this.booksList = new ArrayList<>();
+    public Title() {
+        this.bookList = new ArrayList<>();
     }
 
     @GeneratedValue
@@ -28,9 +28,9 @@ public class Titles {
     @Column(name = "publication_year")
     private int year;
 
-    @OneToMany(targetEntity = Books.class,
-    mappedBy = "titleId")
-    private List<Books> booksList;
+    @OneToMany(targetEntity = Book.class,
+            mappedBy = "titleId")
+    private List<Book> bookList;
 
     public Long getId() {
         return id;
@@ -64,11 +64,11 @@ public class Titles {
         this.year = year;
     }
 
-    public List<Books> getBooksList() {
-        return booksList;
+    public List<Book> getBooksList() {
+        return bookList;
     }
 
-    public void setBooksList(List<Books> booksList) {
-        this.booksList = booksList;
+    public void setBooksList(List<Book> bookList) {
+        this.bookList = bookList;
     }
 }
