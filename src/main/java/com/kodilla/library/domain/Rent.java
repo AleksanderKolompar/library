@@ -2,13 +2,12 @@ package com.kodilla.library.domain;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import java.time.LocalDate;
 
 @Entity
 @Table(name = "Rents")
-public class Rents {
+public class Rent {
 
-    public Rents() {
+    public Rent() {
     }
 
     @GeneratedValue
@@ -19,11 +18,11 @@ public class Rents {
 
     @OneToOne
     @JoinColumn(name = "book_id")
-    private Books bookId;
+    private Book book;
 
     @ManyToOne
     @JoinColumn(name = "reader_id")
-    private Readers readerId;
+    private Reader reader;
 //
 //    @Column(name = "rent_date")
 //    private LocalDate rentDate;
@@ -40,19 +39,19 @@ public class Rents {
         this.id = id;
     }
 
-    public Books getBookId() {
-        return bookId;
+    public Book getBook() {
+        return book;
     }
 
-    public void setBookId(Books bookId) {
-        this.bookId = bookId;
+    public void setBook(Book bookId) {
+        this.book = bookId;
     }
 
-    public Readers getReaderId() {
-        return readerId;
+    public Reader getReader() {
+        return reader;
     }
 
-    public void setReaderId(Readers readerId) {
-        this.readerId = readerId;
+    public void setReader(Reader readerId) {
+        this.reader = readerId;
     }
 }

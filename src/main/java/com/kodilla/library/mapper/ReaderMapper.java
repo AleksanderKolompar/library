@@ -1,25 +1,29 @@
 package com.kodilla.library.mapper;
 
-import com.kodilla.library.domain.Readers;
+import com.kodilla.library.domain.Reader;
 import com.kodilla.library.domain.dto.ReaderDto;
 import org.springframework.stereotype.Service;
 
 @Service
 public class ReaderMapper {
-     public ReaderDto mapToReaderDto(Readers readers){
-        ReaderDto readerDto = new ReaderDto();
-        readerDto.setId(readers.getId());
-        readerDto.setFirstname(readers.getFirstname());
-        readerDto.setLastname(readers.getLastname());
-        readerDto.setRentsList(readers.getRentsList());
-        return readerDto;
-     }
 
-     public Readers mapToReaders(ReaderDto readerDto){
-         Readers readers = new Readers();
-         readers.setFirstname(readerDto.getFirstname());
-         readers.setLastname(readerDto.getLastname());
-         readers.setRentsList(readerDto.getRentsList());
-         return readers;
-     }
+    RentMapper rentMapper;
+
+
+    public ReaderDto mapToReaderDto(Reader reader) {
+        ReaderDto readerDto = new ReaderDto();
+        readerDto.setId(reader.getId());
+        readerDto.setFirstname(reader.getFirstname());
+        readerDto.setLastname(reader.getLastname());
+        readerDto.setRentDtosList(rentMapper.mapToRentDtoList(reader.getRentList()));
+        return readerDto;
+    }
+
+    public Reader mapToReader(ReaderDto readerDto) {
+        Reader reader = new Reader();
+        reader.setFirstname(readerDto.getFirstname());
+        reader.setLastname(readerDto.getLastname());
+        reader.setRentsList(rentMapper.mapToRentsList(readerDto.getRentDtosList()));
+        return reader;
+    }
 }

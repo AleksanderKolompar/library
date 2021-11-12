@@ -2,16 +2,15 @@ package com.kodilla.library.domain;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
 @Table(name = "Readers")
-public class Readers {
+public class Reader {
 
-    public Readers() {
-        this.rentsList = new ArrayList<>();
+    public Reader() {
+        this.rentList = new ArrayList<>();
     }
 
     @GeneratedValue
@@ -29,9 +28,9 @@ public class Readers {
 //    @Column(name = "registered")
 //    private LocalDate date;
 
-    @OneToMany(targetEntity = Rents.class,
-            mappedBy = "readerId")
-    private List<Rents> rentsList;
+    @OneToMany(targetEntity = Rent.class,
+            mappedBy = "reader")
+    private List<Rent> rentList;
 
     public Long getId() {
         return id;
@@ -57,11 +56,11 @@ public class Readers {
         this.lastname = lastname;
     }
 
-    public List<Rents> getRentsList() {
-        return rentsList;
+    public List<Rent> getRentList() {
+        return rentList;
     }
 
-    public void setRentsList(List<Rents> rentsList) {
-        this.rentsList = rentsList;
+    public void setRentsList(List<Rent> rentList) {
+        this.rentList = rentList;
     }
 }

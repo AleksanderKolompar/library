@@ -5,13 +5,13 @@ import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "Books")
-public class Books {
+public class Book {
 
-    public static enum Status{
+    public static enum Status {
         RENTED, DESTROYED, LOST;
     }
 
-    public Books() {
+    public Book() {
     }
 
     @GeneratedValue
@@ -22,7 +22,7 @@ public class Books {
 
     @ManyToOne
     @JoinColumn(name = "title_id")
-    private Titles titleId;
+    private Title titleId;
 
     @Column(name = "status")
     private Status status;
@@ -35,11 +35,11 @@ public class Books {
         this.id = id;
     }
 
-    public Titles getTitleId() {
+    public Title getTitleId() {
         return titleId;
     }
 
-    public void setTitleId(Titles titleId) {
+    public void setTitleId(Title titleId) {
         this.titleId = titleId;
     }
 

@@ -1,22 +1,24 @@
 package com.kodilla.library.domain.dto;
 
-import com.kodilla.library.domain.Books;
+import com.kodilla.library.domain.Book;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Data
+@AllArgsConstructor
 public class TitleDto {
 
     public TitleDto() {
-        this.booksList = new ArrayList<>();
+        this.bookList = new ArrayList<>();
     }
 
     private Long id;
     private String title;
     private String author;
     private int year;
-    private List<Books> booksList;
+    private List<Book> bookList;
 
 }
