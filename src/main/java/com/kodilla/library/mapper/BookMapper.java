@@ -6,6 +6,9 @@ import com.kodilla.library.domain.dto.BookResponse;
 import com.kodilla.library.service.TitleService;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Service
 public class BookMapper {
 
@@ -24,6 +27,12 @@ public class BookMapper {
         Book book = new Book();
         book.setTitle(titleService.get(bookRequest.getTitleId()));
         return book;
+    }
+
+    public List<BookResponse> mapToBookResponseList(List<Book> books) {
+        return books.stream()
+                .map(this::mapToBookResponse)
+                .collect(Collectors.toList());
     }
 
 }
