@@ -13,6 +13,6 @@ public class BookResponse {
 
     private Long id;
     private TitleResponse titleResponse;
-    private String status;
+    private Book.Status status;
 
 }

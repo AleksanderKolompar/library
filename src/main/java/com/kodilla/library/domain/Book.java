@@ -18,21 +18,25 @@ public class Book {
 
         private String value;
 
-        private Status(String value){
+        private Status(String value) {
             this.value = value;
         }
 
-        public String getValue(){
+        public String getValue() {
             return value;
         }
 
-        public Status getStatus(String value) throws InvalidStatusException{
+        public Status getStatus(String value) throws InvalidStatusException {
             return Arrays.stream(Status.values())
                     .filter(status -> status.getValue().equals(value)).findAny().orElseThrow(InvalidStatusException::new);
         }
     }
 
     public Book() {
+    }
+
+    public Book(Title title) {
+        this.title = title;
     }
 
     @GeneratedValue

@@ -42,7 +42,7 @@ public class TitleService {
     }
 
     public void delete(Long id) throws TitleNotFoundException {
-        if (id == null){
+        if (id == null) {
             throw new TitleNotFoundException();
         }
         titleRepository.deleteById(id);

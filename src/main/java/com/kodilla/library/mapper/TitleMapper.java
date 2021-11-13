@@ -5,6 +5,9 @@ import com.kodilla.library.domain.dto.TitleRequest;
 import com.kodilla.library.domain.dto.TitleResponse;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Service
 public class TitleMapper {
 
@@ -14,7 +17,6 @@ public class TitleMapper {
         titleResponse.setTitle(title.getTitle());
         titleResponse.setAuthor(title.getAuthor());
         titleResponse.setYear(title.getYear());
-        titleResponse.setBookList(title.getBooksList());
         return titleResponse;
     }
 
@@ -24,5 +26,11 @@ public class TitleMapper {
         title.setAuthor(titleRequest.getAuthor());
         title.setYear(titleRequest.getYear());
         return title;
+    }
+
+    public List<TitleResponse> mapToTitleResponseList(List<Title> titles) {
+        return titles.stream()
+                .map(this::mapToTitleResponse)
+                .collect(Collectors.toList());
     }
 }

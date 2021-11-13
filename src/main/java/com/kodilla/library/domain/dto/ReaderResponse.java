@@ -11,11 +11,9 @@ import java.util.List;
 public class ReaderResponse {
 
     public ReaderResponse() {
-        this.rentResponseList = new ArrayList<>();
     }
 
     private Long id;
     private String firstname;
     private String lastname;
-    private List<RentResponse> rentResponseList;
 }

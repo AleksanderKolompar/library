@@ -42,7 +42,7 @@ public class ReaderService {
     }
 
     public void delete(Long id) throws ReaderNotFoundException {
-        if (id == null){
+        if (id == null) {
             throw new ReaderNotFoundException();
         }
         readerRepository.deleteById(id);
