@@ -1,16 +1,16 @@
 package com.kodilla.library.mapper;
 
 import com.kodilla.library.domain.Book;
-import com.kodilla.library.domain.dto.BookResponse;
 import com.kodilla.library.domain.dto.BookRequest;
-import com.kodilla.library.domain.dto.TitleRequest;
+import com.kodilla.library.domain.dto.BookResponse;
+import com.kodilla.library.service.TitleService;
 import org.springframework.stereotype.Service;
 
 @Service
 public class BookMapper {
 
     private TitleMapper titleMapper;
-    //private TitleService titleService;
+    private TitleService titleService;
 
     public BookResponse mapToBookResponse(Book book) {
         BookResponse bookResponse = new BookResponse();
@@ -22,9 +22,7 @@ public class BookMapper {
 
     public Book mapToBook(BookRequest bookRequest) {
         Book book = new Book();
-        book.setTitle(titleMapper.mapToTitle(new TitleRequest()));
-        //titleService.getTitle(bookRequest.getTitleId())));
-        book.setStatus(Book.Status.valueOf(bookRequest.getStatus()));
+        book.setTitle(titleService.get(bookRequest.getTitleId()));
         return book;
     }
 
