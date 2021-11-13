@@ -19,6 +19,11 @@ public class ReaderController {
     private ReaderMapper readerMapper;
     private ReaderService readerService;
 
+    public ReaderController(ReaderMapper readerMapper, ReaderService readerService) {
+        this.readerMapper = readerMapper;
+        this.readerService = readerService;
+    }
+
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     public ReaderResponse saveReader(@RequestBody ReaderRequest readerRequest) {
         Reader reader = readerMapper.mapToReader(readerRequest);

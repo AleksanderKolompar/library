@@ -5,7 +5,7 @@ public class BookRequest {
     public BookRequest() {
     }
 
-    public BookRequest(Long titleId, String status) {
+    public BookRequest(Long titleId) {
         this.titleId = titleId;
     }
 

@@ -20,6 +20,13 @@ public class RentMapper {
     private BookService bookService;
     private ReaderService readerService;
 
+    public RentMapper(BookMapper bookMapper, ReaderMapper readerMapper, BookService bookService, ReaderService readerService) {
+        this.bookMapper = bookMapper;
+        this.readerMapper = readerMapper;
+        this.bookService = bookService;
+        this.readerService = readerService;
+    }
+
     public RentResponse mapToRentResponse(Rent rent) {
         RentResponse rentResponse = new RentResponse();
         rentResponse.setId(rent.getId());

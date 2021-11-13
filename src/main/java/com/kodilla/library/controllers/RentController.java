@@ -22,6 +22,11 @@ public class RentController {
     private RentMapper rentMapper;
     private RentService rentService;
 
+    public RentController(RentMapper rentMapper, RentService rentService) {
+        this.rentMapper = rentMapper;
+        this.rentService = rentService;
+    }
+
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     public RentResponse rentBook(@RequestBody RentRequest rentRequest)
             throws BookNotFoundException, ReaderNotFoundException, InvalidStatusException {

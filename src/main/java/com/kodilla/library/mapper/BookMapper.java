@@ -15,11 +15,16 @@ public class BookMapper {
     private TitleMapper titleMapper;
     private TitleService titleService;
 
+    public BookMapper(TitleMapper titleMapper, TitleService titleService) {
+        this.titleMapper = titleMapper;
+        this.titleService = titleService;
+    }
+
     public BookResponse mapToBookResponse(Book book) {
         BookResponse bookResponse = new BookResponse();
         bookResponse.setId(book.getId());
         bookResponse.setTitleResponse(titleMapper.mapToTitleResponse(book.getTitle()));
-        bookResponse.setStatus(book.getStatus().getValue());
+        bookResponse.setStatus(book.getStatus());
         return bookResponse;
     }
 

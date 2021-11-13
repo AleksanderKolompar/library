@@ -22,12 +22,18 @@ public class BookController {
     private BookService bookService;
     private BookMapper bookMapper;
     private TitleService titleService;
-    private TitleMapper titleMapper;
+
+    public BookController(BookService bookService, BookMapper bookMapper, TitleService titleService) {
+        this.bookService = bookService;
+        this.bookMapper = bookMapper;
+        this.titleService = titleService;
+    }
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     public BookResponse saveBook(@RequestBody BookRequest bookRequest) throws TitleNotFoundException {
         Title title = titleService.get(bookRequest.getTitleId());
         Book book = new Book(title);
+        book.setStatus(Book.Status.AVAILABLE);
         book = bookService.save(book);
         return bookMapper.mapToBookResponse(book);
     }

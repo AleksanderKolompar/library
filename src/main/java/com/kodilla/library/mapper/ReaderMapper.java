@@ -11,15 +11,11 @@ import java.util.stream.Collectors;
 @Service
 public class ReaderMapper {
 
-    RentMapper rentMapper;
-
-
     public ReaderResponse mapToReaderResponse(Reader reader) {
         ReaderResponse readerResponse = new ReaderResponse();
         readerResponse.setId(reader.getId());
         readerResponse.setFirstname(reader.getFirstname());
         readerResponse.setLastname(reader.getLastname());
-        readerResponse.setRentResponseList(rentMapper.mapToRentResponseList(reader.getRentList()));
         return readerResponse;
     }
 

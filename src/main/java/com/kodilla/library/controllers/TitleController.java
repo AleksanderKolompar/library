@@ -19,6 +19,11 @@ public class TitleController {
     private TitleMapper titleMapper;
     private TitleService titleService;
 
+    public TitleController(TitleMapper titleMapper, TitleService titleService) {
+        this.titleMapper = titleMapper;
+        this.titleService = titleService;
+    }
+
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     public TitleResponse saveTitle(@RequestBody TitleRequest titleRequest) {
         Title title = titleMapper.mapToTitle(titleRequest);

@@ -1,5 +1,6 @@
 package com.kodilla.library.domain.dto;
 
+import com.kodilla.library.domain.Book;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
@@ -12,6 +13,6 @@ public class BookResponse {
 
     private Long id;
     private TitleResponse titleResponse;
-    private String status;
+    private Book.Status status;
 
 }
