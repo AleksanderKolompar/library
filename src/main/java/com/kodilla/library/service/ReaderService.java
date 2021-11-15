@@ -6,6 +6,7 @@ import com.kodilla.library.domain.Reader;
 import com.kodilla.library.repository.ReaderRepository;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Service
@@ -30,6 +31,7 @@ public class ReaderService {
         if (id != null && readerRepository.existsById(id)) {
             throw new ReaderExistsException();
         }
+        reader.setRegistrationDate(LocalDate.now());
         return readerRepository.save(reader);
     }
 

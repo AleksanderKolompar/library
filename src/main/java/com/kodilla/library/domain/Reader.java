@@ -2,6 +2,7 @@ package com.kodilla.library.domain;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,9 +25,9 @@ public class Reader {
 
     @Column(name = "lastname")
     private String lastname;
-//
-//    @Column(name = "registered")
-//    private LocalDate date;
+
+    @Column(name = "registered")
+    private LocalDate registrationDate;
 
     @OneToMany(targetEntity = Rent.class,
             mappedBy = "reader")
@@ -54,6 +55,14 @@ public class Reader {
 
     public void setLastname(String lastname) {
         this.lastname = lastname;
+    }
+
+    public LocalDate getRegistrationDate() {
+        return registrationDate;
+    }
+
+    public void setRegistrationDate(LocalDate registered) {
+        this.registrationDate = registered;
     }
 
     public List<Rent> getRentList() {

@@ -32,6 +32,8 @@ public class RentMapper {
         rentResponse.setId(rent.getId());
         rentResponse.setReaderResponse(readerMapper.mapToReaderResponse(rent.getReader()));
         rentResponse.setBookResponse(bookMapper.mapToBookResponse(rent.getBook()));
+        rentResponse.setRentDate(rent.getRentDate());
+        rentResponse.setReturnDate(rent.getReturnDate());
         return rentResponse;
     }
 
