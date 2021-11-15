@@ -13,6 +13,7 @@ import com.kodilla.library.service.RentService;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @RestController
@@ -49,9 +50,9 @@ public class RentController {
     }
 
     @PutMapping("/{id}")
-    public RentResponse returnBook(@PathVariable("id") Long id) throws RentNotFoundException {
-        Rent rent = rentService.get(id);
-        rent.getBook().setStatus(Book.Status.AVAILABLE);
+    public RentResponse returnBook(@PathVariable("id") Long id)
+            throws RentNotFoundException, InvalidStatusException {
+        Rent rent = rentService.returnBook(rentService.get(id));
         return rentMapper.mapToRentResponse(rent);
     }
 }

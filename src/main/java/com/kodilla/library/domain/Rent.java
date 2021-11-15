@@ -2,6 +2,7 @@ package com.kodilla.library.domain;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.time.LocalDate;
 
 @Entity
 @Table(name = "Rents")
@@ -23,13 +24,13 @@ public class Rent {
     @ManyToOne
     @JoinColumn(name = "reader_id")
     private Reader reader;
-//
-//    @Column(name = "rent_date")
-//    private LocalDate rentDate;
-//
-//    @Column(name = "return_date")
-//    private LocalDate returnDate;
 
+    @NotNull
+    @Column(name = "rent_date")
+    private LocalDate rentDate;
+
+    @Column(name = "return_date")
+    private LocalDate returnDate;
 
     public Long getId() {
         return id;
@@ -53,5 +54,21 @@ public class Rent {
 
     public void setReader(Reader readerId) {
         this.reader = readerId;
+    }
+
+    public LocalDate getRentDate() {
+        return rentDate;
+    }
+
+    public void setRentDate(LocalDate rentDate) {
+        this.rentDate = rentDate;
+    }
+
+    public LocalDate getReturnDate() {
+        return returnDate;
+    }
+
+    public void setReturnDate(LocalDate returnDate) {
+        this.returnDate = returnDate;
     }
 }

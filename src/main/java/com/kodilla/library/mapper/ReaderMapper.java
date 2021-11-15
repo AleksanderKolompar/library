@@ -13,9 +13,14 @@ public class ReaderMapper {
 
     public ReaderResponse mapToReaderResponse(Reader reader) {
         ReaderResponse readerResponse = new ReaderResponse();
-        readerResponse.setId(reader.getId());
-        readerResponse.setFirstname(reader.getFirstname());
-        readerResponse.setLastname(reader.getLastname());
+        readerResponse.setId(
+                reader.getId());
+        readerResponse.setFirstname(
+                reader.getFirstname());
+        readerResponse.setLastname(
+                reader.getLastname());
+        readerResponse.setRegistrationDate(
+                reader.getRegistrationDate());
         return readerResponse;
     }
 
