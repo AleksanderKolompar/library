@@ -11,24 +11,13 @@ import java.util.Arrays;
 public class Book {
 
     public enum Status {
-        AVAILABLE("available"),
-        RENTED("rented"),
-        DESTROYED("destroyed"),
-        LOST("lost");
-
-        private String value;
-
-        private Status(String value) {
-            this.value = value;
-        }
+        AVAILABLE,
+        RENTED,
+        DESTROYED,
+        LOST;
 
         public String getValue() {
-            return value;
-        }
-
-        public Status getStatus(String value) throws InvalidStatusException {
-            return Arrays.stream(Status.values())
-                    .filter(status -> status.getValue().equals(value)).findAny().orElseThrow(InvalidStatusException::new);
+            return this.toString();
         }
     }
 

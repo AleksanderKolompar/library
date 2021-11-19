@@ -37,7 +37,7 @@ public class BookService {
 
     public Book rentBook(Book book) throws InvalidStatusException {
         if (!book.getStatus().equals(Book.Status.AVAILABLE)) {
-            throw new InvalidStatusException();
+            throw new InvalidStatusException(Book.Status.AVAILABLE, book.getStatus());
         }
         book.setStatus(Book.Status.RENTED);
         return bookRepository.save(book);
@@ -45,7 +45,7 @@ public class BookService {
 
     public Book returnBook(Book book) throws InvalidStatusException {
         if (book.getStatus().equals(Book.Status.AVAILABLE)) {
-            throw new InvalidStatusException();
+            throw new InvalidStatusException(Book.Status.RENTED, book.getStatus());
         }
         book.setStatus(Book.Status.AVAILABLE);
         return bookRepository.save(book);
