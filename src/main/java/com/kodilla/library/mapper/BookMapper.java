@@ -1,9 +1,7 @@
 package com.kodilla.library.mapper;
 
 import com.kodilla.library.domain.Book;
-import com.kodilla.library.domain.dto.BookRequest;
 import com.kodilla.library.domain.dto.BookResponse;
-import com.kodilla.library.service.TitleService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -12,12 +10,10 @@ import java.util.stream.Collectors;
 @Service
 public class BookMapper {
 
-    private TitleMapper titleMapper;
-    private TitleService titleService;
+    private final TitleMapper titleMapper;
 
-    public BookMapper(TitleMapper titleMapper, TitleService titleService) {
+    public BookMapper(TitleMapper titleMapper) {
         this.titleMapper = titleMapper;
-        this.titleService = titleService;
     }
 
     public BookResponse mapToBookResponse(Book book) {
@@ -26,12 +22,6 @@ public class BookMapper {
         bookResponse.setTitleResponse(titleMapper.mapToTitleResponse(book.getTitle()));
         bookResponse.setStatus(book.getStatus());
         return bookResponse;
-    }
-
-    public Book mapToBook(BookRequest bookRequest) {
-        Book book = new Book();
-        book.setTitle(titleService.get(bookRequest.getTitleId()));
-        return book;
     }
 
     public List<BookResponse> mapToBookResponseList(List<Book> books) {
