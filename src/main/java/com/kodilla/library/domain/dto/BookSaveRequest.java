@@ -1,13 +1,6 @@
 package com.kodilla.library.domain.dto;
 
-public class BookRequest {
-
-    public BookRequest() {
-    }
-
-    public BookRequest(Long titleId) {
-        this.titleId = titleId;
-    }
+public class BookSaveRequest {
 
     private Long titleId;
 

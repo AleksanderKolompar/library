@@ -1,10 +1,7 @@
 package com.kodilla.library.domain;
 
-import com.kodilla.library.controllers.exceptions.InvalidStatusException;
-
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import java.util.Arrays;
 
 @Entity
 @Table(name = "Books")
@@ -14,18 +11,7 @@ public class Book {
         AVAILABLE,
         RENTED,
         DESTROYED,
-        LOST;
-
-        public String getValue() {
-            return this.toString();
-        }
-    }
-
-    public Book() {
-    }
-
-    public Book(Title title) {
-        this.title = title;
+        LOST
     }
 
     @GeneratedValue
@@ -40,6 +26,14 @@ public class Book {
 
     @Column(name = "status")
     private Status status;
+
+    protected Book() {
+    }
+
+    public Book(Title title, Status status) {
+        this.title = title;
+        this.status = status;
+    }
 
     public Long getId() {
         return id;

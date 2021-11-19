@@ -1,8 +1,9 @@
 package com.kodilla.library.mapper;
 
 import com.kodilla.library.domain.Title;
-import com.kodilla.library.domain.dto.TitleRequest;
 import com.kodilla.library.domain.dto.TitleResponse;
+import com.kodilla.library.domain.dto.TitleSaveRequest;
+import com.kodilla.library.domain.dto.TitleUpdateRequest;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -20,11 +21,20 @@ public class TitleMapper {
         return titleResponse;
     }
 
-    public Title mapToTitle(TitleRequest titleRequest) {
+    public Title mapToTitle(TitleSaveRequest titleSaveRequest) {
         Title title = new Title();
-        title.setTitle(titleRequest.getTitle());
-        title.setAuthor(titleRequest.getAuthor());
-        title.setYear(titleRequest.getYear());
+        title.setTitle(titleSaveRequest.getTitle());
+        title.setAuthor(titleSaveRequest.getAuthor());
+        title.setYear(titleSaveRequest.getYear());
+        return title;
+    }
+
+    public Title mapToTitle(TitleUpdateRequest titleUpdateRequest) {
+        Title title = new Title();
+        title.setId(titleUpdateRequest.getId());
+        title.setTitle(titleUpdateRequest.getTitle());
+        title.setAuthor(titleUpdateRequest.getAuthor());
+        title.setYear(titleUpdateRequest.getYear());
         return title;
     }
 

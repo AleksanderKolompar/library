@@ -1,15 +1,6 @@
 package com.kodilla.library.domain.dto;
 
-public class TitleRequest {
-
-    public TitleRequest() {
-    }
-
-    public TitleRequest(String title, String author, int year) {
-        this.title = title;
-        this.author = author;
-        this.year = year;
-    }
+public class TitleSaveRequest {
 
     private String title;
     private String author;

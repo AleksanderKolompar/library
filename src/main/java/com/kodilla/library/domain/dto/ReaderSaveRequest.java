@@ -1,14 +1,6 @@
 package com.kodilla.library.domain.dto;
 
-public class ReaderRequest {
-
-    public ReaderRequest() {
-    }
-
-    public ReaderRequest(String firstname, String lastname) {
-        this.firstname = firstname;
-        this.lastname = lastname;
-    }
+public class ReaderSaveRequest {
 
     private String firstname;
     private String lastname;
