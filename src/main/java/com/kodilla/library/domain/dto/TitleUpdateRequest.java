@@ -1,7 +1,10 @@
 package com.kodilla.library.domain.dto;
 
-public class TitleResponse {
+import javax.validation.constraints.NotNull;
 
+public class TitleUpdateRequest {
+
+    @NotNull
     private Long id;
     private String title;
     private String author;

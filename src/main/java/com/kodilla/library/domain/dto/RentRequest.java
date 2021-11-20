@@ -2,14 +2,6 @@ package com.kodilla.library.domain.dto;
 
 public class RentRequest {
 
-    public RentRequest() {
-    }
-
-    public RentRequest(Long bookId, Long readerId) {
-        this.bookId = bookId;
-        this.readerId = readerId;
-    }
-
     private Long bookId;
     private Long readerId;
 

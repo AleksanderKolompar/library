@@ -1,13 +1,13 @@
 package com.kodilla.library.domain.dto;
 
-import java.time.LocalDate;
+import javax.validation.constraints.NotNull;
 
-public class ReaderResponse {
+public class ReaderUpdateRequest {
 
+    @NotNull
     private Long id;
     private String firstname;
     private String lastname;
-    private LocalDate registrationDate;
 
     public Long getId() {
         return id;
@@ -31,13 +31,5 @@ public class ReaderResponse {
 
     public void setLastname(String lastname) {
         this.lastname = lastname;
-    }
-
-    public LocalDate getRegistrationDate() {
-        return registrationDate;
-    }
-
-    public void setRegistrationDate(LocalDate registrationDate) {
-        this.registrationDate = registrationDate;
     }
 }

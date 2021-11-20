@@ -10,10 +10,6 @@ import java.util.List;
 @Table(name = "Readers")
 public class Reader {
 
-    public Reader() {
-        this.rentList = new ArrayList<>();
-    }
-
     @GeneratedValue
     @Id
     @NotNull
@@ -31,7 +27,21 @@ public class Reader {
 
     @OneToMany(targetEntity = Rent.class,
             mappedBy = "reader")
-    private List<Rent> rentList;
+    private List<Rent> rentList = new ArrayList<>();
+
+    protected Reader() {
+    }
+
+    public Reader(String firstname, String lastname) {
+        this.firstname = firstname;
+        this.lastname = lastname;
+    }
+
+    public Reader(Long id, String firstname, String lastname) {
+        this.id = id;
+        this.firstname = firstname;
+        this.lastname = lastname;
+    }
 
     public Long getId() {
         return id;
@@ -63,13 +73,5 @@ public class Reader {
 
     public void setRegistrationDate(LocalDate registered) {
         this.registrationDate = registered;
-    }
-
-    public List<Rent> getRentList() {
-        return rentList;
-    }
-
-    public void setRentsList(List<Rent> rentList) {
-        this.rentList = rentList;
     }
 }

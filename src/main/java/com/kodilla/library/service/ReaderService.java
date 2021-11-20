@@ -1,8 +1,11 @@
 package com.kodilla.library.service;
 
-import com.kodilla.library.controllers.exceptions.ReaderExistsException;
 import com.kodilla.library.controllers.exceptions.ReaderNotFoundException;
 import com.kodilla.library.domain.Reader;
+import com.kodilla.library.domain.dto.ReaderResponse;
+import com.kodilla.library.domain.dto.ReaderSaveRequest;
+import com.kodilla.library.domain.dto.ReaderUpdateRequest;
+import com.kodilla.library.mapper.ReaderMapper;
 import com.kodilla.library.repository.ReaderRepository;
 import org.springframework.stereotype.Service;
 
@@ -12,41 +15,43 @@ import java.util.List;
 @Service
 public class ReaderService {
 
-    private ReaderRepository readerRepository;
+    private final ReaderRepository readerRepository;
+    private final ReaderMapper readerMapper;
 
-    public ReaderService(ReaderRepository readerRepository) {
+    public ReaderService(ReaderRepository readerRepository, ReaderMapper readerMapper) {
         this.readerRepository = readerRepository;
+        this.readerMapper = readerMapper;
     }
 
-    public Reader get(Long id) throws ReaderNotFoundException {
-        return readerRepository.findById(id).orElseThrow(ReaderNotFoundException::new);
+    public ReaderResponse get(Long id)
+            throws ReaderNotFoundException {
+        Reader reader = readerRepository.findById(id)
+                .orElseThrow(ReaderNotFoundException::new);
+        return readerMapper.mapToReaderResponse(reader);
     }
 
-    public List<Reader> get() {
-        return readerRepository.findAll();
+    public List<ReaderResponse> get() {
+        return readerMapper.mapToReaderResponseList(readerRepository.findAll());
     }
 
-    public Reader save(Reader reader) throws ReaderExistsException {
-        Long id = reader.getId();
-        if (id != null && readerRepository.existsById(id)) {
-            throw new ReaderExistsException();
-        }
+    public ReaderResponse save(ReaderSaveRequest readerSaveRequest) {
+        Reader reader = readerMapper.mapToReader(readerSaveRequest);
         reader.setRegistrationDate(LocalDate.now());
-        return readerRepository.save(reader);
+        reader = readerRepository.save(reader);
+        return readerMapper.mapToReaderResponse(reader);
     }
 
-    public Reader update(Reader reader) throws ReaderNotFoundException {
-        Long id = reader.getId();
-        if (id == null || !readerRepository.existsById(id)) {
+    public ReaderResponse update(ReaderUpdateRequest readerUpdateRequest)
+            throws ReaderNotFoundException {
+        Reader reader = readerMapper.mapToReader(readerUpdateRequest);
+        if (!readerRepository.existsById(reader.getId())) {
             throw new ReaderNotFoundException();
         }
-        return readerRepository.save(reader);
+        reader = readerRepository.save(reader);
+        return readerMapper.mapToReaderResponse(reader);
     }
 
-    public void delete(Long id) throws ReaderNotFoundException {
-        if (id == null) {
-            throw new ReaderNotFoundException();
-        }
+    public void delete(Long id) {
         readerRepository.deleteById(id);
     }
 }

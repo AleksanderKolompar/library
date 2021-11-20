@@ -8,11 +8,6 @@ import java.util.List;
 @Entity
 @Table(name = "Titles")
 public class Title {
-
-    public Title() {
-        this.bookList = new ArrayList<>();
-    }
-
     @GeneratedValue
     @Id
     @NotNull
@@ -30,7 +25,7 @@ public class Title {
 
     @OneToMany(targetEntity = Book.class,
             mappedBy = "title")
-    private List<Book> bookList;
+    private List<Book> bookList = new ArrayList<>();
 
     public Long getId() {
         return id;
