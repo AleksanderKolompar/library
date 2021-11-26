@@ -40,7 +40,7 @@ public class BookController {
 
     @GetMapping("available/{title_id}")
     public List<BookResponse> findAvailable(@PathVariable("title_id") Long titleId) {
-        return bookService.findAvailable(titleId, Book.Status.AVAILABLE);
+        return bookService.findBookWithStatus(titleId, Book.Status.AVAILABLE);
     }
 
     @PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE)

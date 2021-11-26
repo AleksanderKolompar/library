@@ -15,6 +15,9 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+import static com.kodilla.library.domain.Book.Status.AVAILABLE;
+import static com.kodilla.library.domain.Book.Status.RENTED;
+
 @Service
 public class BookService {
 
@@ -34,8 +37,8 @@ public class BookService {
     }
 
     public List<BookResponse> get() {
-        List<Book> books = bookRepository.findAll();
-        return bookMapper.mapToBookResponseList(books);
+        List<Book> bookList = bookRepository.findAll();
+        return bookMapper.mapToBookResponseList(bookList);
     }
 
     public BookResponse save(BookSaveRequest bookSaveRequest)
@@ -57,8 +60,8 @@ public class BookService {
         if (!book.getStatus().equals(Book.Status.AVAILABLE)) {
             throw new InvalidStatusException(Book.Status.AVAILABLE, book.getStatus());
         }
-        book.setStatus(Book.Status.RENTED);
-        return bookRepository.save(book);
+        BookUpdateRequest bookUpdateRequest = new BookUpdateRequest(book.getId(), RENTED);
+        return updateBook(bookUpdateRequest);
     }
 
     public Book returnBook(Long id)
@@ -66,22 +69,28 @@ public class BookService {
         Book book = bookRepository.findById(id)
                 .orElseThrow(BookNotFoundException::new);
         if (book.getStatus().equals(Book.Status.AVAILABLE)) {
-            throw new InvalidStatusException(Book.Status.RENTED, book.getStatus());
+            throw new InvalidStatusException(RENTED, book.getStatus());
         }
-        book.setStatus(Book.Status.AVAILABLE);
-        return bookRepository.save(book);
+        BookUpdateRequest bookUpdateRequest = new BookUpdateRequest(book.getId(), AVAILABLE);
+        return updateBook(bookUpdateRequest);
     }
 
     public BookResponse markBook(BookUpdateRequest bookUpdateRequest)
+            throws BookNotFoundException {
+        Book book = updateBook(bookUpdateRequest);
+        return bookMapper.mapToBookResponse(book);
+    }
+
+    public Book updateBook(BookUpdateRequest bookUpdateRequest)
             throws BookNotFoundException {
         Book book = bookRepository.findById(bookUpdateRequest.getId())
                 .orElseThrow(BookNotFoundException::new);
         book.setStatus(bookUpdateRequest.getStatus());
         book = bookRepository.save(book);
-        return bookMapper.mapToBookResponse(book);
+        return book;
     }
 
-    public List<BookResponse> findAvailable(Long titleId, Book.Status status) {
+    public List<BookResponse> findBookWithStatus(Long titleId, Book.Status status) {
         return bookMapper.mapToBookResponseList(bookRepository.findBookByTitleIdAndStatus(titleId, status));
     }
 }

@@ -25,6 +25,7 @@ public class Title {
     private int year;
 
     @OneToMany(targetEntity = Book.class,
+            cascade = CascadeType.ALL,
             mappedBy = "title")
     private List<Book> bookList = new ArrayList<>();
 

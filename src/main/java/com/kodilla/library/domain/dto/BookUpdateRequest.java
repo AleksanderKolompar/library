@@ -10,6 +10,11 @@ public class BookUpdateRequest {
     private Long id;
     private Book.Status status;
 
+    public BookUpdateRequest(Long id, Book.Status status) {
+        this.id = id;
+        this.status = status;
+    }
+
     public Long getId() {
         return id;
     }
