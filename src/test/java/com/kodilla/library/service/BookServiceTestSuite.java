@@ -123,8 +123,7 @@ class BookServiceTestSuite {
         //When
         bookService.delete(bookResponse2.getId());
         //Then
-        Optional<Book> deletedBook = bookRepository.findById(bookResponse2.getId());
-        assertFalse(deletedBook.isPresent());
+        assertFalse(bookRepository.existsById(bookResponse2.getId()));
         //CleanUp
         try {
             titleService.delete(titleResponse.getId());
@@ -304,7 +303,7 @@ class BookServiceTestSuite {
     }
 
     @Test
-    void shouldChangeStatus(){
+    void shouldChangeStatus() {
         //Given
         TitleSaveRequest titleSaveRequest = new TitleSaveRequest("String", "String", 0);
         TitleResponse titleResponse = titleService.save(titleSaveRequest);

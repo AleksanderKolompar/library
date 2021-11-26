@@ -48,10 +48,7 @@ public class TitleService {
         return titleMapper.mapToTitleResponse(title);
     }
 
-    public void delete(Long id) throws TitleNotFoundException {
-        if (id == null) {
-            throw new TitleNotFoundException();
-        }
+    public void delete(Long id) {
         titleRepository.deleteById(id);
     }
 }

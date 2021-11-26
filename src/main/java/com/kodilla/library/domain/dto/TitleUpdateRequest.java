@@ -10,6 +10,13 @@ public class TitleUpdateRequest {
     private String author;
     private int year;
 
+    public TitleUpdateRequest(Long id, String title, String author, int year) {
+        this.id = id;
+        this.title = title;
+        this.author = author;
+        this.year = year;
+    }
+
     public Long getId() {
         return id;
     }
