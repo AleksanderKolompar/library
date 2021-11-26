@@ -4,6 +4,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @Entity
 @Table(name = "Titles")
@@ -65,5 +66,18 @@ public class Title {
 
     public void setBooksList(List<Book> bookList) {
         this.bookList = bookList;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Title)) return false;
+        Title title1 = (Title) o;
+        return year == title1.year && Objects.equals(id, title1.id) && Objects.equals(title, title1.title) && Objects.equals(author, title1.author) && Objects.equals(bookList, title1.bookList);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, title, author, year, bookList);
     }
 }

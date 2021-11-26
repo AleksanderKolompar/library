@@ -1,7 +1,10 @@
 package com.kodilla.library.domain;
 
+import com.kodilla.library.controllers.exceptions.InvalidStatusException;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.Arrays;
 
 @Entity
 @Table(name = "Books")
@@ -57,5 +60,18 @@ public class Book {
 
     public void setStatus(Status status) {
         this.status = status;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Book)) return false;
+        Book book = (Book) o;
+        return Objects.equals(id, book.id) && Objects.equals(title, book.title) && status == book.status;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, title, status);
     }
 }

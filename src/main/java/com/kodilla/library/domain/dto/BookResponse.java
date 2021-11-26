@@ -31,4 +31,17 @@ public class BookResponse {
     public void setStatus(Book.Status status) {
         this.status = status;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof BookResponse)) return false;
+        BookResponse that = (BookResponse) o;
+        return Objects.equals(id, that.id) && Objects.equals(titleResponse, that.titleResponse) && status == that.status;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, titleResponse, status);
+    }
 }
