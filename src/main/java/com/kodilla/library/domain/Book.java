@@ -1,8 +1,10 @@
 package com.kodilla.library.domain;
 
+import com.kodilla.library.controllers.exceptions.InvalidStatusException;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import java.util.Objects;
+import java.util.Arrays;
 
 @Entity
 @Table(name = "Books")
@@ -28,7 +30,7 @@ public class Book {
     @Column(name = "status")
     private Status status;
 
-    public Book() {
+    protected Book() {
     }
 
     public Book(Title title, Status status) {

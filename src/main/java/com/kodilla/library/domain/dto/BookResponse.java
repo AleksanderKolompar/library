@@ -2,8 +2,6 @@ package com.kodilla.library.domain.dto;
 
 import com.kodilla.library.domain.Book;
 
-import java.util.Objects;
-
 public class BookResponse {
 
     private Long id;
