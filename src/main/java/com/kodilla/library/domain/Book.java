@@ -5,6 +5,7 @@ import com.kodilla.library.controllers.exceptions.InvalidStatusException;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.Arrays;
+import java.util.Objects;
 
 @Entity
 @Table(name = "Books")
