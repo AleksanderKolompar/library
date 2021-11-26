@@ -1,5 +1,7 @@
 package com.kodilla.library.domain.dto;
 
+import java.util.Objects;
+
 public class TitleResponse {
 
     private Long id;
