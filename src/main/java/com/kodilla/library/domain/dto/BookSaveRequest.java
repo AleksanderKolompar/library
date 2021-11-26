@@ -4,6 +4,10 @@ public class BookSaveRequest {
 
     private Long titleId;
 
+    public BookSaveRequest(Long titleId) {
+        this.titleId = titleId;
+    }
+
     public Long getTitleId() {
         return titleId;
     }

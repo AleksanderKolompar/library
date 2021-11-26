@@ -5,6 +5,11 @@ public class ReaderSaveRequest {
     private String firstname;
     private String lastname;
 
+    public ReaderSaveRequest(String firstname, String lastname) {
+        this.firstname = firstname;
+        this.lastname = lastname;
+    }
+
     public String getFirstname() {
         return firstname;
     }

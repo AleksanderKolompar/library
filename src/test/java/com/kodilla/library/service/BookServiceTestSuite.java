@@ -34,8 +34,7 @@ class BookServiceTestSuite {
         //Given
         TitleSaveRequest titleSaveRequest = new TitleSaveRequest("String", "String", 0);
         TitleResponse titleResponse = titleService.save(titleSaveRequest);
-        BookSaveRequest bookSaveRequest = new BookSaveRequest();
-        bookSaveRequest.setTitleId(titleResponse.getId());
+        BookSaveRequest bookSaveRequest = new BookSaveRequest(titleResponse.getId());
 
         BookResponse expectedResponse = new BookResponse();
         expectedResponse.setId(titleResponse.getId() + 1);
@@ -60,8 +59,7 @@ class BookServiceTestSuite {
         TitleSaveRequest titleSaveRequest = new TitleSaveRequest("String", "String", 0);
         TitleResponse titleResponse = titleService.save(titleSaveRequest);
 
-        BookSaveRequest bookSaveRequest = new BookSaveRequest();
-        bookSaveRequest.setTitleId(titleResponse.getId());
+        BookSaveRequest bookSaveRequest = new BookSaveRequest(titleResponse.getId());
 
         BookResponse bookResponse1 = bookService.save(bookSaveRequest);
         BookResponse bookResponse2 = bookService.save(bookSaveRequest);
@@ -87,8 +85,7 @@ class BookServiceTestSuite {
         TitleSaveRequest titleSaveRequest = new TitleSaveRequest("String", "String", 0);
         TitleResponse titleResponse = titleService.save(titleSaveRequest);
 
-        BookSaveRequest bookSaveRequest = new BookSaveRequest();
-        bookSaveRequest.setTitleId(titleResponse.getId());
+        BookSaveRequest bookSaveRequest = new BookSaveRequest(titleResponse.getId());
 
         BookResponse bookResponse1 = bookService.save(bookSaveRequest);
         BookResponse bookResponse2 = bookService.save(bookSaveRequest);
@@ -114,8 +111,7 @@ class BookServiceTestSuite {
         TitleSaveRequest titleSaveRequest = new TitleSaveRequest("String", "String", 0);
         TitleResponse titleResponse = titleService.save(titleSaveRequest);
 
-        BookSaveRequest bookSaveRequest = new BookSaveRequest();
-        bookSaveRequest.setTitleId(titleResponse.getId());
+        BookSaveRequest bookSaveRequest = new BookSaveRequest(titleResponse.getId());
 
         BookResponse bookResponse1 = bookService.save(bookSaveRequest);
         BookResponse bookResponse2 = bookService.save(bookSaveRequest);
@@ -140,8 +136,7 @@ class BookServiceTestSuite {
         TitleSaveRequest titleSaveRequest = new TitleSaveRequest("String", "String", 0);
         TitleResponse titleResponse = titleService.save(titleSaveRequest);
 
-        BookSaveRequest bookSaveRequest = new BookSaveRequest();
-        bookSaveRequest.setTitleId(titleResponse.getId());
+        BookSaveRequest bookSaveRequest = new BookSaveRequest(titleResponse.getId());
 
         BookResponse bookResponse = bookService.save(bookSaveRequest);
         //When
@@ -163,8 +158,7 @@ class BookServiceTestSuite {
         TitleSaveRequest titleSaveRequest = new TitleSaveRequest("String", "String", 0);
         TitleResponse titleResponse = titleService.save(titleSaveRequest);
 
-        BookSaveRequest bookSaveRequest = new BookSaveRequest();
-        bookSaveRequest.setTitleId(titleResponse.getId());
+        BookSaveRequest bookSaveRequest = new BookSaveRequest(titleResponse.getId());
 
         BookResponse bookResponse = bookService.save(bookSaveRequest);
         bookService.rentBook(bookResponse.getId());
@@ -185,8 +179,7 @@ class BookServiceTestSuite {
         TitleSaveRequest titleSaveRequest = new TitleSaveRequest("String", "String", 0);
         TitleResponse titleResponse = titleService.save(titleSaveRequest);
 
-        BookSaveRequest bookSaveRequest = new BookSaveRequest();
-        bookSaveRequest.setTitleId(titleResponse.getId());
+        BookSaveRequest bookSaveRequest = new BookSaveRequest(titleResponse.getId());
 
         BookResponse bookResponse = bookService.save(bookSaveRequest);
         bookService.delete(bookResponse.getId());
@@ -207,8 +200,7 @@ class BookServiceTestSuite {
         TitleSaveRequest titleSaveRequest = new TitleSaveRequest("String", "String", 0);
         TitleResponse titleResponse = titleService.save(titleSaveRequest);
 
-        BookSaveRequest bookSaveRequest = new BookSaveRequest();
-        bookSaveRequest.setTitleId(titleResponse.getId());
+        BookSaveRequest bookSaveRequest = new BookSaveRequest(titleResponse.getId());
 
         BookResponse bookResponse = bookService.save(bookSaveRequest);
         bookService.rentBook(bookResponse.getId());
@@ -231,8 +223,7 @@ class BookServiceTestSuite {
         TitleSaveRequest titleSaveRequest = new TitleSaveRequest("String", "String", 0);
         TitleResponse titleResponse = titleService.save(titleSaveRequest);
 
-        BookSaveRequest bookSaveRequest = new BookSaveRequest();
-        bookSaveRequest.setTitleId(titleResponse.getId());
+        BookSaveRequest bookSaveRequest = new BookSaveRequest(titleResponse.getId());
 
         BookResponse bookResponse = bookService.save(bookSaveRequest);
         //When and Then
@@ -252,8 +243,7 @@ class BookServiceTestSuite {
         TitleSaveRequest titleSaveRequest = new TitleSaveRequest("String", "String", 0);
         TitleResponse titleResponse = titleService.save(titleSaveRequest);
 
-        BookSaveRequest bookSaveRequest = new BookSaveRequest();
-        bookSaveRequest.setTitleId(titleResponse.getId());
+        BookSaveRequest bookSaveRequest = new BookSaveRequest(titleResponse.getId());
 
         BookResponse bookResponse = bookService.save(bookSaveRequest);
         bookService.delete(bookResponse.getId());
@@ -275,10 +265,8 @@ class BookServiceTestSuite {
         TitleResponse titleResponse1 = titleService.save(titleSaveRequest);
         TitleResponse titleResponse2 = titleService.save(titleSaveRequest);
 
-        BookSaveRequest bookSaveRequest1 = new BookSaveRequest();
-        BookSaveRequest bookSaveRequest2 = new BookSaveRequest();
-        bookSaveRequest1.setTitleId(titleResponse1.getId());
-        bookSaveRequest2.setTitleId(titleResponse2.getId());
+        BookSaveRequest bookSaveRequest1 = new BookSaveRequest(titleResponse1.getId());
+        BookSaveRequest bookSaveRequest2 = new BookSaveRequest(titleResponse2.getId());
 
         BookResponse bookResponse1 = bookService.save(bookSaveRequest1);
         BookResponse bookResponse2 = bookService.save(bookSaveRequest2);
@@ -308,8 +296,7 @@ class BookServiceTestSuite {
         TitleSaveRequest titleSaveRequest = new TitleSaveRequest("String", "String", 0);
         TitleResponse titleResponse = titleService.save(titleSaveRequest);
 
-        BookSaveRequest bookSaveRequest = new BookSaveRequest();
-        bookSaveRequest.setTitleId(titleResponse.getId());
+        BookSaveRequest bookSaveRequest = new BookSaveRequest(titleResponse.getId());
 
         BookResponse bookResponse = bookService.save(bookSaveRequest);
         //When
