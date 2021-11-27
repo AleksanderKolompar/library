@@ -55,6 +55,7 @@ class BookServiceTestSuite {
 
     @Test
     void shouldGetAllBooks() {
+        bookRepository.deleteAll();
         //Given
         TitleSaveRequest titleSaveRequest = new TitleSaveRequest("String", "String", 0);
         TitleResponse titleResponse = titleService.save(titleSaveRequest);
@@ -117,9 +118,10 @@ class BookServiceTestSuite {
         BookResponse bookResponse2 = bookService.save(bookSaveRequest);
         BookResponse bookResponse3 = bookService.save(bookSaveRequest);
         //When
-        bookService.delete(bookResponse2.getId());
+
+        BookResponse deletedBook = bookService.delete(bookResponse2.getId());
         //Then
-        assertFalse(bookRepository.existsById(bookResponse2.getId()));
+        assertEquals(deletedBook.getStatus(), Book.Status.DESTROYED);
         //CleanUp
         try {
             titleService.delete(titleResponse.getId());
@@ -184,7 +186,7 @@ class BookServiceTestSuite {
         BookResponse bookResponse = bookService.save(bookSaveRequest);
         bookService.delete(bookResponse.getId());
         //When and Then
-        assertThrows(BookNotFoundException.class, () -> bookService.rentBook(bookResponse.getId()));
+        assertThrows(InvalidStatusException.class, () -> bookService.rentBook(bookResponse.getId()));
         //CleanUp
         try {
             titleService.delete(titleResponse.getId());
@@ -248,7 +250,7 @@ class BookServiceTestSuite {
         BookResponse bookResponse = bookService.save(bookSaveRequest);
         bookService.delete(bookResponse.getId());
         //When and Then
-        assertThrows(BookNotFoundException.class, () -> bookService.returnBook(bookResponse.getId()));
+        assertThrows(InvalidStatusException.class, () -> bookService.returnBook(bookResponse.getId()));
         //CleanUp
         try {
             titleService.delete(titleResponse.getId());

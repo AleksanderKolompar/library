@@ -44,6 +44,7 @@ public class TitleServiceTestSuite {
 
     @Test
     void shouldGetAllTitles(){
+        titleRepository.deleteAll();
         //Given
         TitleSaveRequest titleSaveRequest = new TitleSaveRequest("String", "String", 0);
         TitleResponse titleResponse1 = titleService.save(titleSaveRequest);

@@ -1,12 +1,16 @@
 package com.kodilla.library.domain.dto;
 
+import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
+import java.util.Objects;
 
 public class RentResponse {
 
+    @NotNull
     private Long id;
     private BookResponse bookResponse;
     private ReaderResponse readerResponse;
+    @NotNull
     private LocalDate rentDate;
     private LocalDate returnDate;
 
@@ -48,5 +52,18 @@ public class RentResponse {
 
     public void setReturnDate(LocalDate returnDate) {
         this.returnDate = returnDate;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        RentResponse that = (RentResponse) o;
+        return id.equals(that.id) && Objects.equals(bookResponse, that.bookResponse) && Objects.equals(readerResponse, that.readerResponse) && rentDate.equals(that.rentDate) && Objects.equals(returnDate, that.returnDate);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, bookResponse, readerResponse, rentDate, returnDate);
     }
 }

@@ -44,6 +44,7 @@ public class TitleService {
         if (!titleRepository.existsById(title.getId())) {
             throw new TitleNotFoundException();
         }
+        title.setId(titleUpdateRequest.getId());
         title = titleRepository.save(title);
         return titleMapper.mapToTitleResponse(title);
     }

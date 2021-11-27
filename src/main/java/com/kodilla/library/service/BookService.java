@@ -15,8 +15,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-import static com.kodilla.library.domain.Book.Status.AVAILABLE;
-import static com.kodilla.library.domain.Book.Status.RENTED;
+import static com.kodilla.library.domain.Book.Status.*;
 
 @Service
 public class BookService {
@@ -49,8 +48,8 @@ public class BookService {
         return bookMapper.mapToBookResponse(book);
     }
 
-    public void delete(Long id) {
-        bookRepository.deleteById(id);
+    public BookResponse delete(Long id) {
+        return bookMapper.mapToBookResponse(updateBook(new BookUpdateRequest(id, DESTROYED)));
     }
 
     public Book rentBook(Long id)
@@ -61,14 +60,16 @@ public class BookService {
             throw new InvalidStatusException(Book.Status.AVAILABLE, book.getStatus());
         }
         BookUpdateRequest bookUpdateRequest = new BookUpdateRequest(book.getId(), RENTED);
-        return updateBook(bookUpdateRequest);
+        book = updateBook(bookUpdateRequest);
+        book.setId(id);
+        return book;
     }
 
     public Book returnBook(Long id)
             throws InvalidStatusException, BookNotFoundException {
         Book book = bookRepository.findById(id)
                 .orElseThrow(BookNotFoundException::new);
-        if (book.getStatus().equals(Book.Status.AVAILABLE)) {
+        if (!book.getStatus().equals(RENTED)) {
             throw new InvalidStatusException(RENTED, book.getStatus());
         }
         BookUpdateRequest bookUpdateRequest = new BookUpdateRequest(book.getId(), AVAILABLE);
@@ -85,6 +86,7 @@ public class BookService {
             throws BookNotFoundException {
         Book book = bookRepository.findById(bookUpdateRequest.getId())
                 .orElseThrow(BookNotFoundException::new);
+        book.setId(bookUpdateRequest.getId());
         book.setStatus(bookUpdateRequest.getStatus());
         book = bookRepository.save(book);
         return book;

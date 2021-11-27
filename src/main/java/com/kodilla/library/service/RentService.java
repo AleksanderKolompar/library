@@ -46,7 +46,7 @@ public class RentService {
             throws InvalidStatusException, BookNotFoundException, ReaderNotFoundException {
         Book book = bookService.rentBook(rentRequest.getBookId());
         Reader reader = readerRepository.findById(rentRequest.getReaderId())
-                .orElseThrow(ReaderExistsException::new);
+                .orElseThrow(ReaderNotFoundException::new);
         Rent rent = new Rent(book, reader);
         rent.setRentDate(LocalDate.now());
         rent = rentRepository.save(rent);
@@ -61,6 +61,7 @@ public class RentService {
         Book book = bookService.returnBook(rent.getBook().getId());
         rent.setBook(book);
         rent.setReturnDate(LocalDate.now());
+        rent.setId(id);
         rent = rentRepository.save(rent);
         return rentMapper.mapToRentResponse(rent);
     }
